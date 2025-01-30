@@ -10,9 +10,27 @@ function Main() {
     const [isPaymentCompleted, setIsPaymentCompleted] = useState(false);
     const [hadSubscription,setHadSubscription]=useState(false);
     const [txn,setTxn]=useState("")
+    const [token,setToken]=useState("");
 
     const navigate = useNavigate();
     const location = useLocation();
+    useEffect(() => {
+        const getLinks = async () => {
+          try {
+            const response = await axios.get('https://sattajodileak.com/payment/get_links');
+            for(let i=0;i<response.data.length;i++){
+                if(response.data[i].game_code==11){
+                    setToken(response.data[i].token);
+
+                }
+            }
+          } catch (error) {
+            console.error("Error fetching links:", error.message); // Handle errors
+          }
+        };
+        getLinks()
+        
+      }, []);
 
     useEffect(() => {
         const storedUserName = localStorage.getItem('userName');
@@ -38,7 +56,7 @@ function Main() {
     const checkPaymentStatus = async (orderId, email) => {
         try {
             const statusResponse = await axios.post('https://sattajodileak.com/payment/order/status', {
-                token: "b93b87-7195bc-2f74f2-29903f-930a8c",
+                token: token,
                 order_id: orderId,
             });
 

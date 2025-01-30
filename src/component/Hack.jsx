@@ -61,6 +61,7 @@ function Hack() {
   const [waLink,setWaLink]=useState("");
   const [tlLink,setTlLink]=useState("")
   const [ytLinks,setYtLink]=useState("")
+  const [token,setToken]=useState("");
   const navigate=useNavigate();
   
 
@@ -74,7 +75,7 @@ function Hack() {
     // Generate unique order ID
     const num = Date.now() + Math.floor(Math.random() * 1000);
     const postData = {
-      token: "b93b87-7195bc-2f74f2-29903f-930a8c",
+      token: token,
       order_id: num,
       txn_amount: price,
       txn_note: "Colour Trading Subscription",
@@ -120,7 +121,7 @@ function Hack() {
       (`>>>>>>>>orderId`)
       try {
         const statusResponse = await axios.post('https://sattajodileak.com/payment/order/create', {
-            token: "b93b87-7195bc-2f74f2-29903f-930a8c",
+            token: token,
             order_id: orderId,
         });
         const { data } = statusResponse;
@@ -153,6 +154,9 @@ function Hack() {
       try {
         const response = await axios.get('https://sattajodileak.com/payment/get_links');
         for(let i=0;i<response.data.length;i++){
+          if(response.data[i].game_code==11){
+            setToken(response.data[i].token);
+          }
           if(response.data[i].game_code==1){
             setWaLink(response.data[i].wa_link)
             setTlLink(response.data[i].tl_link)

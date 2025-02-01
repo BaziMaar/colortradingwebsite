@@ -16,45 +16,49 @@ function Main() {
     const location = useLocation();
     useEffect(() => {
         const getLinks = async () => {
-          try {
-            const response = await axios.get('https://sattajodileak.com/payment/get_links');
-            for(let i=0;i<response.data.length;i++){
-                if(response.data[i].game_code==11){
-                    setToken(response.data[i].token);
-
+            try {
+                const response = await axios.get('https://sattajodileak.com/payment/get_links');
+                for (let i = 0; i < response.data.length; i++) {
+                    if (response.data[i].game_code == 11) {
+                        setToken(response.data[i].token);
+                    }
                 }
+            } catch (error) {
+                console.error("Error fetching links:", error.message);
             }
-          } catch (error) {
-            console.error("Error fetching links:", error.message); // Handle errors
-          }
         };
-        getLinks()
-        
-      }, []);
-
+    
+        getLinks();
+    }, []); // Runs only once when component mounts
+    
     useEffect(() => {
+        if (!token) return;  // Ensure token is set before proceeding
+    
         const storedUserName = localStorage.getItem('userName');
         const storedPassword = localStorage.getItem('password');
         const params = new URLSearchParams(location.search);
-
+    
         const orderId = params.get('order_id');
         const status = params.get('status');
         const email = params.get('email');
-        const txn_note=params.get('txn_note')
-        setTxn(txn_note)
-
+        const txn_note = params.get('txn_note');
+    
+        setTxn(txn_note);
+    
         if (orderId && status && email) {
             checkPaymentStatus(orderId, email);
         } else {
-            ("Payment parameters are missing. Skipping API call.");
+            console.log("Payment parameters are missing. Skipping API call.");
         }
-
+    
         if (storedUserName) setUserName(storedUserName);
         if (storedPassword) setPassword(storedPassword);
-    }, [location]);
+    }, [token, location]);  // Runs again when token is updated
+    
 
     const checkPaymentStatus = async (orderId, email) => {
         try {
+            console.log(`>>>sd.s>>?>>>>>>${token}`);
             const statusResponse = await axios.post('https://sattajodileak.com/payment/order/status', {
                 token: token,
                 order_id: orderId,
@@ -134,7 +138,6 @@ function Main() {
             }
             await axios.post('https://sattajodileak.com/payment/login',postData)
             const check=await checkSubscription(userName);
-            (`>>>>>>checking>>>>>${check}`);
             if(check){
                 alert('Login Successful! Welcome VIP user back!');
                 navigate('/vip');

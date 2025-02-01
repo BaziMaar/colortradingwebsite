@@ -75,9 +75,9 @@ function Hack() {
     // Generate unique order ID
     const num = Date.now() + Math.floor(Math.random() * 1000);
     const postData = {
-      token: token,
+      token: "225e3b-5843ec-ddb76d-a14f84-5c4741",
       order_id: num,
-      txn_amount: 1,
+      txn_amount: 650,
       txn_note: "Colour Trading Subscription",
       product_name: "Premium Subscription",
       customer_name: localStorage.getItem('userName'),
@@ -121,7 +121,7 @@ function Hack() {
       (`>>>>>>>>orderId`)
       try {
         const statusResponse = await axios.post('https://sattajodileak.com/payment/order/create', {
-            token: token,
+            token: "225e3b-5843ec-ddb76d-a14f84-5c4741",
             order_id: orderId,
         });
         const { data } = statusResponse;

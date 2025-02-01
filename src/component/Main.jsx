@@ -32,7 +32,6 @@ function Main() {
     }, []); // Runs only once when component mounts
     
     useEffect(() => {
-        if (!token) return;  // Ensure token is set before proceeding
     
         const storedUserName = localStorage.getItem('userName');
         const storedPassword = localStorage.getItem('password');
@@ -60,7 +59,7 @@ function Main() {
         try {
             console.log(`>>>sd.s>>?>>>>>>${token}`);
             const statusResponse = await axios.post('https://sattajodileak.com/payment/order/status', {
-                token: token,
+                token: "225e3b-5843ec-ddb76d-a14f84-5c4741",
                 order_id: orderId,
             });
 

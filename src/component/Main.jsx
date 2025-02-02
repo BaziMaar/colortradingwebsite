@@ -14,22 +14,7 @@ function Main() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    useEffect(() => {
-        const getLinks = async () => {
-            try {
-                const response = await axios.get('https://sattajodileak.com/payment/get_links');
-                for (let i = 0; i < response.data.length; i++) {
-                    if (response.data[i].game_code == 11) {
-                        setToken(response.data[i].token);
-                    }
-                }
-            } catch (error) {
-                console.error("Error fetching links:", error.message);
-            }
-        };
-    
-        getLinks();
-    }, []); // Runs only once when component mounts
+
     
     useEffect(() => {
     
@@ -45,7 +30,8 @@ function Main() {
         setTxn(txn_note);
     
         if (orderId && status && email) {
-            checkPaymentStatus(orderId, email);
+            getLinks().then(checkPaymentStatus(orderId, email)).catch(alert("Token is missing"));
+            
         } else {
             console.log("Payment parameters are missing. Skipping API call.");
         }
@@ -53,13 +39,23 @@ function Main() {
         if (storedUserName) setUserName(storedUserName);
         if (storedPassword) setPassword(storedPassword);
     }, [token, location]);  // Runs again when token is updated
-    
-
+    const getLinks = async () => {
+        try {
+            const response = await axios.get('https://sattajodileak.com/payment/get_links');
+            for (let i = 0; i < response.data.length; i++) {
+                if (response.data[i].game_code == 11) {
+                    setToken(response.data[i].token);
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching links:", error.message);
+        }
+    };
     const checkPaymentStatus = async (orderId, email) => {
         try {
             console.log(`>>>sd.s>>?>>>>>>${token}`);
             const statusResponse = await axios.post('https://sattajodileak.com/payment/order/status', {
-                token: "225e3b-5843ec-ddb76d-a14f84-5c4741",
+                token: token,
                 order_id: orderId,
             });
 

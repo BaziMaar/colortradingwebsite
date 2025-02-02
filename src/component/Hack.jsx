@@ -77,7 +77,7 @@ function Hack() {
     const postData = {
       token: token,
       order_id: num,
-      txn_amount: 650,
+      txn_amount: price,
       txn_note: "Colour Trading Subscription",
       product_name: "Premium Subscription",
       customer_name: localStorage.getItem('userName'),

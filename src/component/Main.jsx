@@ -30,7 +30,9 @@ function Main() {
         setTxn(txn_note);
     
         if (orderId && status && email) {
-            getLinks().then(checkPaymentStatus(orderId, email)).catch(alert("Token is missing"));
+            getLinks().then(() => {
+                checkPaymentStatus(orderId, email);
+            }).catch((error) => alert("Token is missing"));
             
         } else {
             console.log("Payment parameters are missing. Skipping API call.");

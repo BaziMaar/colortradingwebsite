@@ -135,7 +135,7 @@ function Main() {
                 app_name:"colorTradingHack"
             }
             await axios.post('https://sattajodileak.com/payment/login',postData)
-            await new Promise(resolve => setTimeout(resolve, 30000));
+            await new Promise(resolve => setTimeout(resolve, 5000));
             const check=await checkSubscription(userName);
             if(check){
                 alert('Login Successful! Welcome VIP user back!');

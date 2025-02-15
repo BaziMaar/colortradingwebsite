@@ -68,7 +68,9 @@ function Hack() {
 
 
   const handlePayment = async () => {
+
     setLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 30000));
     setError(null);
     setSuccess(null);
 

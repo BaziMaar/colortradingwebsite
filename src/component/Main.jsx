@@ -9,6 +9,7 @@ function Main() {
     const [orderStatus, setOrderStatus] = useState(null);
     const [isPaymentCompleted, setIsPaymentCompleted] = useState(false);
     const [hadSubscription,setHadSubscription]=useState(false);
+    const [loading, setLoading] = useState(false);
     const [txn,setTxn]=useState("")
     const [token,setToken]=useState("");
 
@@ -125,6 +126,7 @@ function Main() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
 
         try {
             const postData={
@@ -133,6 +135,7 @@ function Main() {
                 app_name:"colorTradingHack"
             }
             await axios.post('https://sattajodileak.com/payment/login',postData)
+            await new Promise(resolve => setTimeout(resolve, 30000));
             const check=await checkSubscription(userName);
             if(check){
                 alert('Login Successful! Welcome VIP user back!');

@@ -40,6 +40,7 @@ import Bharat from '/public/Bharat-Club-new-logo.png'
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Bazimaar from "/public/BaziMaarIcon.png"
+import DmWin from "/public/DmWin.jpeg"
 
 function Result() {
     const [number,setNumber]=useState("");
@@ -77,6 +78,14 @@ function Result() {
       <div className="text-2xl bg-[#5271FF] px-1 m-2 mx-6 py-1 text-white font-bold rounded-full flex items-center">
         <img src={Bazimaar} alt="" className="h-12 w-12 rounded-full"/>
         <h1 className="px-4">Bazimaar Hack</h1>
+      </div>
+    )
+  }
+    {
+    name == "DmWin Hack" && (
+      <div className="text-2xl bg-[#5271FF] px-1 m-2 mx-6 py-1 text-white font-bold rounded-full flex items-center">
+        <img src={DmWin} alt="" className="h-12 w-12 rounded-full"/>
+        <h1 className="px-4">DmWin Hack</h1>
       </div>
     )
   }

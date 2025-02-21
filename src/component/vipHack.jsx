@@ -37,7 +37,7 @@ import One from "/public/51game.png";
 import Bharat from "/public/Bharat-Club-new-logo.png";
 import Bazimaar from "/public/BaziMaarIcon.png";
 import VIP from "../assets/vipLogos.png";
-
+import DmWin from "/public/DmWin.jpeg";
 function vipHack() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -73,6 +73,7 @@ function vipHack() {
 
   const games = [
     { name: "Bazimaar Hack", url: "https://bazimaargames.com/login", img: Bazimaar },
+    { name: "DmWin Hack", url: "https://dmwin.us/#/register?r_code=87933024517", img: DmWin },
     { name: "Tiranga Hack", url: "https://www.tirangagames.top/#/register?invitationCode=87854589447", img: img3 },
     { name: "91 Club Hack", url: "https://91club.bet/#/register?invitationCode=87134963862", img: img4 },
     { name: "TC Lottery Hack", url: "https://www.9987up.co/#/register?invitationCode=2ETva2184281", img: img2 },
@@ -109,7 +110,7 @@ function vipHack() {
             className="text-2xl bg-[#5271FF] px-1 m-2 mx-6 py-1 text-white font-bold rounded-full flex items-center justify-between"
           >
             <div className="flex items-center">
-              <img src={game.img} alt={game.name} className="h-12 w-12" />
+              <img src={game.img} alt={game.name} className="h-12 w-12 rounded-full" />
               <h1 className="px-4">{game.name}</h1>
             </div>
           </Link>

@@ -41,6 +41,7 @@ import Five from '/public/55club logo.png'
 import One from '/public/51game.png'
 import Bharat from '/public/Bharat-Club-new-logo.png'
 import AccessVIP from '../assets/accessVip.png'
+import DmWin from '/public/DmWin.jpeg'
 import Bazimaar from '/public/BaziMaarIcon.png'
 
 function Hack() {
@@ -70,7 +71,7 @@ function Hack() {
   const handlePayment = async () => {
 
     setLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 30000));
+    await new Promise(resolve => setTimeout(resolve, 10000));
     setError(null);
     setSuccess(null);
 
@@ -189,6 +190,17 @@ function Hack() {
           <img src={Bazimaar} alt="" className='h-12 w-12 rounded-full '/>
           <h1 className='px-4'>BaziMaar Hack</h1>
       </Link>
+      <button 
+        onClick={toggleModal} 
+        className="text-2xl bg-[#5271FF] px-1 m-2 mx-6 py-1 text-white font-bold rounded-full flex items-center justify-between"
+        disabled={loading}
+      >
+        <div className="flex items-center">
+          <img src={DmWin} alt="Hack 2" className="h-12 w-12 rounded-full" />
+          <h1 className="px-4">DmWin Hack</h1>
+        </div>
+        <img src={vip} alt="VIP" className="h-8 w-8" />
+      </button>
       <button 
         onClick={toggleModal} 
         className="text-2xl bg-[#5271FF] px-1 m-2 mx-6 py-1 text-white font-bold rounded-full flex items-center justify-between"
